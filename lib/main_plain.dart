@@ -21,12 +21,6 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   int _counter = 0;
 
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -48,9 +42,12 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
         child: const Icon(Icons.add),
+        onPressed: () {
+          setState(() {
+            _counter++;
+          });
+        },
       ),
     );
   }

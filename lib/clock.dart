@@ -1,57 +1,50 @@
 import 'package:flutter/material.dart';
 
+import 'widget/clock.dart';
+
 void main() => runApp(App());
 
 class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Page(),
+      home: HomePage(),
     );
   }
 }
 
-class Page extends StatefulWidget {
-  Page({Key key}) : super(key: key);
+class HomePage extends StatefulWidget {
+  HomePage({Key key}) : super(key: key);
 
   @override
-  _PageState createState() => _PageState();
+  _HomePageState createState() => _HomePageState();
 }
 
-class _PageState extends State<Page> {
+class _HomePageState extends State<HomePage> {
   int _counter = 0;
-
-  @override
-  void initState() {
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Sample'),
+        title: const Text('Flutter Demo Home Page'),
       ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Text('You have pushed the button this many times:'),
             Text(
-              '$_counter',
+              'count: $_counter',
               style: Theme.of(context).textTheme.display1,
             ),
+            const SizedBox(height: 88),
+            const Clock()
           ],
         ),
       ),
-      floatingActionButton: GestureDetector(
-        child: Container(
-          color: Colors.blue[100],
-          width: 88,
-          height: 88,
-          child: const Icon(Icons.add),
-        ),
-        onTap: () {
+      floatingActionButton: FloatingActionButton(
+        child: const Icon(Icons.add),
+        onPressed: () {
           setState(() => _counter++);
         },
       ),

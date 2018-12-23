@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'widget/clock.dart';
+
 void main() => runApp(App());
 
 class App extends StatelessWidget {
@@ -20,6 +22,8 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   int _counter = 0;
+  final _myStatefulKey1 = GlobalKey<_MyStatefulState>();
+  final _myStatefulKey2 = GlobalKey<_MyStatefulState>();
 
   @override
   Widget build(BuildContext context) {
@@ -48,15 +52,26 @@ class _HomePageState extends State<HomePage> {
               // ここで断ち切れる
               child: const Counter(),
             ),
-          ],
+            const SizedBox(height: 88),
+            const Clock(),
+          ]..addAll(_counter.isEven
+              ? [
+                  Container(
+                      child:
+                          Container(child: MyStateful(key: _myStatefulKey1))),
+                  Container(child: MyStateful(key: _myStatefulKey2))
+                ]
+              : [
+                  Container(child: MyStateful(key: _myStatefulKey2)),
+                  Container(
+                      child: Container(child: MyStateful(key: _myStatefulKey1)))
+                ]),
         ),
       ),
       floatingActionButton: FloatingActionButton(
         child: const Icon(Icons.add),
         onPressed: () {
-          setState(() {
-            _counter++;
-          });
+          setState(() => _counter++);
         },
       ),
     );
@@ -94,6 +109,23 @@ class Counter extends StatelessWidget {
     return Text(
       '${inherited.count}',
       style: Theme.of(context).textTheme.display1,
+    );
+  }
+}
+
+class MyStateful extends StatefulWidget {
+  MyStateful({Key key}) : super(key: key);
+
+  @override
+  _MyStatefulState createState() => _MyStatefulState();
+}
+
+class _MyStatefulState extends State<MyStateful> {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 32,
+      color: Colors.red,
     );
   }
 }

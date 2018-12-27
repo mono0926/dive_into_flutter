@@ -1,3 +1,4 @@
+import 'package:dive_into_flutter/util/util.dart';
 import 'package:flutter/material.dart';
 
 void main() => runApp(App());
@@ -27,29 +28,25 @@ class _PageState extends State<Page> {
       appBar: AppBar(
         title: const Text('Sample'),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const Text('You have pushed the button this many times:'),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.display1,
-            ),
-          ],
-        ),
-      ),
-      floatingActionButton: GestureDetector(
-        child: Container(
-          color: Colors.blue[100],
-          width: 88,
-          height: 88,
+      body: Text('hello'),
+      floatingActionButton: FloatingActionButton(
           child: const Icon(Icons.add),
-        ),
-        onTap: () {
-          setState(() => _counter++);
-        },
-      ),
+          onPressed: () {
+            Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+              return NextPage();
+            }));
+          }),
+    );
+  }
+}
+
+class NextPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    logger.info('');
+    return Scaffold(
+      appBar: AppBar(),
+      body: Container(),
     );
   }
 }

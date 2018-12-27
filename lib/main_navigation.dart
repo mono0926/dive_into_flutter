@@ -20,8 +20,6 @@ class Page extends StatefulWidget {
 }
 
 class _PageState extends State<Page> {
-  int _counter = 0;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(

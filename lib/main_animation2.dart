@@ -39,12 +39,10 @@ class Page extends StatelessWidget {
 
 class FadeInWidget extends StatefulWidget {
   final Widget child;
-  final Function() start;
 
   const FadeInWidget({
     Key key,
     @required this.child,
-    @required this.start,
   }) : super(key: key);
 
   @override
